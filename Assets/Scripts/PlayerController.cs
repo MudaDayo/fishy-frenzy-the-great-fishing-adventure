@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float gravityValue = -9.81f;
 
+    [SerializeField]
+    private float speedBoostModifier = 1.5f;
+
     private Vector2 movementInput = Vector2.zero;
     private bool boosting = false;
 
@@ -40,7 +43,7 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
+        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y).normalized;
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         if (move != Vector3.zero)
@@ -49,9 +52,10 @@ public class PlayerController : MonoBehaviour
         }
 
         // Changes the height position of the player..
-        if (boosting && groundedPlayer)
+        if (boosting)
         {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            Vector3 boostMove = new Vector3(movementInput.x, 0, movementInput.y).normalized;
+            controller.Move(boostMove * Time.deltaTime * playerSpeed * speedBoostModifier);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
