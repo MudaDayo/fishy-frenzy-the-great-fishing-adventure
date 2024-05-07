@@ -9936,6 +9936,7 @@ MonoBehaviour:
   playerSpeed: 2
   smoke: {fileID: 3776190298290030312}
   fireSmoke: {fileID: 6828069918060721689}
+  gravityValue: -9.81
   speedBoostModifier: 1.5
 --- !u!136 &1696608413680308349
 CapsuleCollider:
@@ -9957,6 +9958,6 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
-  m_Height: 1
+  m_Height: 5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private GameObject smoke, fireSmoke;
-/*    [SerializeField]
-    private float gravityValue = -9.81f;*/
+    [SerializeField]
+    private float gravityValue = -9.81f;
 
     [SerializeField]
     private float speedBoostModifier = 1.5f;
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
             fireSmoke.SetActive(false);
         }
 
-/*        playerVelocity.y += gravityValue * Time.deltaTime;*/
+        playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
 }

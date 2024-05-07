@@ -912,7 +912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385792673495783979, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.46
+      value: 14.41
       objectReference: {fileID: 0}
     - target: {fileID: 7385792673495783979, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -950,6 +950,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8315768344982029680, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
+      propertyPath: m_Height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315768344982029680, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8586060755246444793, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_Actions
       value: 
@@ -960,7 +968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8586060755246444793, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Keyboard - WASD
+      value: Gamepad
       objectReference: {fileID: 0}
     - target: {fileID: 8586060755246444793, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_ActionEvents.Array.size
@@ -1724,6 +1732,10 @@ PrefabInstance:
     - target: {fileID: 7385792673495783979, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586060755246444793, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Gamepad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
