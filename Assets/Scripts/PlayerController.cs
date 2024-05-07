@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
     [SerializeField]
     private float playerSpeed = 2.0f;
+
+    [SerializeField]
+    private GameObject smoke, fireSmoke;
 /*    [SerializeField]
     private float gravityValue = -9.81f;*/
 
@@ -52,8 +55,15 @@ public class PlayerController : MonoBehaviour
         // Changes the height position of the player..
         if (boosting)
         {
+            fireSmoke.SetActive(true);
+            smoke.SetActive(false);
             Vector3 boostMove = new Vector3(movementInput.x, 0, movementInput.y).normalized;
             controller.Move(boostMove * Time.deltaTime * playerSpeed * speedBoostModifier);
+        }
+        else
+        {
+            smoke.SetActive(true);
+            fireSmoke.SetActive(false);
         }
 
 /*        playerVelocity.y += gravityValue * Time.deltaTime;*/
