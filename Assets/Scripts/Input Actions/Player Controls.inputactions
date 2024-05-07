@@ -42,7 +42,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Keyboard - WASD",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -53,7 +53,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Keyboard - WASD",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -64,7 +64,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Keyboard - WASD",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -75,7 +75,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Keyboard - WASD",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -93,7 +93,7 @@
                 },
                 {
                     "name": "Arrow Keys",
-                    "id": "b2d044c7-ce3e-4882-99ca-02d43ddf5b00",
+                    "id": "be62ec59-ce7b-41a0-ae6d-01a9c2f07537",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -104,44 +104,44 @@
                 },
                 {
                     "name": "up",
-                    "id": "e3bd5c68-3a2b-48ef-9b43-406110c5ed47",
+                    "id": "e493cd07-ff62-40af-a1f4-8d88bedcbf16",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard 2",
+                    "groups": "Keyboard - Arrow Keys",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "e870f1da-b542-4995-81e5-1a9a866736ad",
+                    "id": "cff5bcad-0d28-494c-9af3-5e86d07dc969",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard 2",
+                    "groups": "Keyboard - Arrow Keys",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "d67e5780-d380-412a-b30b-6ea00f882fb3",
+                    "id": "7f718b70-1427-4b60-8251-0f1102521a5d",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard 2",
+                    "groups": "Keyboard - Arrow Keys",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "54b5f1cd-3467-4ba3-ad6f-f1c187bdc1f9",
+                    "id": "a8ea7477-b0fe-4b95-ae50-94d3d32fff82",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard 2",
+                    "groups": "Keyboard - Arrow Keys",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -152,7 +152,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Keyboard - WASD",
                     "action": "Boost",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -170,11 +170,11 @@
                 },
                 {
                     "name": "",
-                    "id": "17344d04-f8f7-4531-b57f-1991a66699ac",
+                    "id": "8a75555e-387d-433e-b997-d30a7ed23f05",
                     "path": "<Keyboard>/slash",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard 2",
+                    "groups": "Keyboard - Arrow Keys",
                     "action": "Boost",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -184,12 +184,12 @@
     ],
     "controlSchemes": [
         {
-            "name": "Keyboard",
-            "bindingGroup": "Keyboard",
+            "name": "Keyboard - WASD",
+            "bindingGroup": "Keyboard - WASD",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
-                    "isOptional": false,
+                    "isOptional": true,
                     "isOR": false
                 }
             ]
@@ -206,8 +206,19 @@
             ]
         },
         {
-            "name": "Keyboard 2",
-            "bindingGroup": "Keyboard 2",
+            "name": "Keyboard - WASD",
+            "bindingGroup": "Keyboard - WASD",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard - Arrow Keys",
+            "bindingGroup": "Keyboard - Arrow Keys",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
