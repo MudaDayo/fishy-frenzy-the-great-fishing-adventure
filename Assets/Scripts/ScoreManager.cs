@@ -11,8 +11,8 @@ public class ScoreManager : MonoBehaviour
 
     int scoreP1 = 0;
     int scoreP2 = 0;
+    
 
-   
     void Start()
     {
         scoreP1Text.text = "Player1 Score: " + scoreP1.ToString();
