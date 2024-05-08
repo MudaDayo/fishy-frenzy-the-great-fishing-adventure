@@ -14829,6 +14829,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 28e423d6-e80b-4fd1-8c6e-dd86e4d4b235
     m_ActionName: Player/Boost[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8394661219458683048}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnSwitch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 09d01984-7fc3-4f82-a741-b292f12a80d0
+    m_ActionName: Player/Switch[/Keyboard/rightShift,/Keyboard/e,/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -14883,6 +14899,7 @@ MonoBehaviour:
   playerBase: {fileID: 0}
   hitBox: {fileID: 246247636104923821}
   brokenSmoke: {fileID: 6102656475214000479}
+  otherShip: {fileID: 0}
   gravityValue: -9.81
   speedBoostModifier: 2.5
 --- !u!136 &1696608413680308349
