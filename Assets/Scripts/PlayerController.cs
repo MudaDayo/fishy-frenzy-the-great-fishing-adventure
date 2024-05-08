@@ -149,6 +149,8 @@ public class PlayerController : MonoBehaviour
             {
                 //add fishing code here 
                 Debug.Log("Fishing");
+                
+              
             }
         }
     }
