@@ -143,9 +143,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "FishingZone")
         {
-            if(boosting && !(boostTimer < boostDuration) && move == Vector3.zero)
+            if (boosting && !(boostTimer < boostDuration) && move == Vector3.zero)
             {
                 //add fishing code here 
             }
         }
+    }
 }
