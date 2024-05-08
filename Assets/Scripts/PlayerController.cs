@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float speedBoostModifier = 1.5f;
 
+    private Vector3 move;
+
     private Vector2 movementInput = Vector2.zero;
     private bool boosting = false;
     private bool canBoost = true;
@@ -57,12 +59,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if(respawnTimer < respawnDuration)
+        if (respawnTimer < respawnDuration)
         {
             respawnTimer += Time.deltaTime;
             return;
         }
-        else if(brokenSmoke.activeSelf)
+        else if (brokenSmoke.activeSelf)
         {
             brokenSmoke.SetActive(false);
         }
@@ -73,7 +75,7 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y).normalized;
+        move = new Vector3(movementInput.x, 0, movementInput.y).normalized;
         if (!(boostTimer < boostDuration))
         {
             controller.Move(move * Time.deltaTime * playerSpeed);
@@ -83,7 +85,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        
+
 
         if (boosting && !(boostTimer < boostDuration) && move != Vector3.zero && canBoost)
         {
@@ -95,14 +97,14 @@ public class PlayerController : MonoBehaviour
         // Changes the height position of the player..
         if (boostTimer < boostDuration)
         {
-            if(boostTimer == 0f)
+            if (boostTimer == 0f)
             {
                 boostDirection = new Vector3(movementInput.x, 0, movementInput.y).normalized;
             }
             boostTimer += Time.deltaTime;
 
             Vector3 boostManeuver = new Vector3(movementInput.x, 0, movementInput.y).normalized * boostSteering;
-            boostDirection = new Vector3(boostDirection.x + boostManeuver.x , 0f, boostDirection.z + boostManeuver.z).normalized;
+            boostDirection = new Vector3(boostDirection.x + boostManeuver.x, 0f, boostDirection.z + boostManeuver.z).normalized;
 
             fireSmoke.SetActive(true);
             smoke.SetActive(false);
@@ -143,9 +145,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "FishingZone")
         {
-            if(boosting && !(boostTimer < boostDuration) && move == Vector3.zero)
+            if (boosting && !(boostTimer < boostDuration) && move == Vector3.zero)
             {
                 //add fishing code here 
             }
         }
+    }
 }
