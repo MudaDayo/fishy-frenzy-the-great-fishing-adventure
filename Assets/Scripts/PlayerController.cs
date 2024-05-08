@@ -71,6 +71,12 @@ public class PlayerController : MonoBehaviour
         if (respawnTimer < respawnDuration)
         {
             respawnTimer += Time.deltaTime;
+
+            if (gameObject.GetComponent<PlayerInput>().enabled)
+            {
+                SwitchBoat();
+            }
+
             return;
         }
         else if (brokenSmoke.activeSelf)
@@ -145,7 +151,12 @@ public class PlayerController : MonoBehaviour
 
         lastFrameSwitching = switching;
 
-        SwitchBoat();
+        if (switching)
+        {
+            SwitchBoat();
+        }
+            
+         
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
@@ -158,8 +169,6 @@ public class PlayerController : MonoBehaviour
 
     private void SwitchBoat()
     {
-        if (switching)
-        {
             gameObject.GetComponent<PlayerInput>().enabled = false;
 
             otherShip.GetComponent<PlayerInput>().enabled = false;
@@ -178,7 +187,6 @@ public class PlayerController : MonoBehaviour
             {
                 lastAction = 0;
             }
-        }
 
     }
 

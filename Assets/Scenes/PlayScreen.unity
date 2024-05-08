@@ -1366,7 +1366,7 @@ PrefabInstance:
       objectReference: {fileID: 135001162}
     - target: {fileID: 8394661219458683048, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: playerSpeed
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8394661219458683048, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: boostDuration
@@ -1818,7 +1818,7 @@ PrefabInstance:
       objectReference: {fileID: 135001162}
     - target: {fileID: 8394661219458683048, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: playerSpeed
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8394661219458683048, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: boostDuration
