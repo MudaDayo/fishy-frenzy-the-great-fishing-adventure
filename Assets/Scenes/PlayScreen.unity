@@ -294,6 +294,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8586060755246444793, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard - WASD
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1382,7 +1386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8586060755246444793, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Gamepad
+      value: Keyboard - Arrow Keys
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1838,7 +1842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8586060755246444793, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Gamepad
+      value: Keyboard - Arrow Keys
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1984,6 +1988,10 @@ PrefabInstance:
       propertyPath: playerBase
       value: 
       objectReference: {fileID: 1737951963}
+    - target: {fileID: 8586060755246444793, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard - WASD
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
