@@ -148,6 +148,7 @@ public class PlayerController : MonoBehaviour
             if (boosting && !(boostTimer < boostDuration) && move == Vector3.zero)
             {
                 //add fishing code here 
+                Debug.Log("Fishing");
             }
         }
     }
