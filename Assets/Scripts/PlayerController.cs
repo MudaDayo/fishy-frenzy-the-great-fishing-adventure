@@ -68,9 +68,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Respawn();
+        if (respawnTimer < respawnDuration)
+        {
+            respawnTimer += Time.deltaTime;
+            return;
+        }
+        else if (brokenSmoke.activeSelf)
+        {
+            brokenSmoke.SetActive(false);
+        }
 
-        if(lastAction == 1)
+        if (lastAction == 1)
         {
             controller.Move(lastMove * Time.deltaTime * playerSpeed * afkSlowdown);
             return;
@@ -145,19 +153,6 @@ public class PlayerController : MonoBehaviour
         if (gameObject.GetComponent<PlayerInput>().enabled)
         {
             lastAction = 0;
-        }
-    }
-
-    private void Respawn()
-    {
-        if (respawnTimer < respawnDuration)
-        {
-            respawnTimer += Time.deltaTime;
-            return;
-        }
-        else if (brokenSmoke.activeSelf)
-        {
-            brokenSmoke.SetActive(false);
         }
     }
 
