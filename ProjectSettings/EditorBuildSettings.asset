@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayScreen.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 728c31c966af8fb4f84812fb37d49de6
+  - enabled: 1
+    path: Assets/Scenes/KeyBinds.unity
+    guid: 2aac35b51fe80804a89072fcec8664ce
   m_configObjects: {}
