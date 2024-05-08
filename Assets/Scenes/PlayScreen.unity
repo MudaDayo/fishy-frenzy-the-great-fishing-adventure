@@ -1382,7 +1382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8586060755246444793, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Keyboard - WASD
+      value: Gamepad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1838,7 +1838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8586060755246444793, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Keyboard - WASD
+      value: Gamepad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

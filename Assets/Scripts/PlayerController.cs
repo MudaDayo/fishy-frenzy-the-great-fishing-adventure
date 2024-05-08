@@ -14,27 +14,30 @@ public class PlayerController : MonoBehaviour
     private string enemyTag;
 
     [SerializeField]
-    private float boostDuration, boostSteering, respawnDuration;
+    private float boostDuration, boostSteering, respawnDuration, afkSlowdown;
 
     private float boostTimer, respawnTimer;
     [SerializeField]
     private Vector3 startPosition;
 
     [SerializeField]
-    private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip;
+    private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke;
     [SerializeField]
     private float gravityValue = -9.81f;
 
     [SerializeField]
     private float speedBoostModifier = 1.5f;
 
-    private Vector3 move;
+    private Vector3 move, lastMove;
 
     private Vector2 movementInput = Vector2.zero;
     private bool boosting = false;
     private bool switching = false;
     private bool canBoost = true;
     private bool lastFrameSwitching;
+
+    //tried to use enum, too lazy... 0 for nothing, 1 to move, 2 to fish
+    public int lastAction = 0;
 
     private void Start()
     {
@@ -65,15 +68,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Respawn();
 
-        if (respawnTimer < respawnDuration)
+        if(lastAction == 1)
         {
-            respawnTimer += Time.deltaTime;
+            controller.Move(lastMove * Time.deltaTime * playerSpeed * afkSlowdown);
             return;
-        }
-        else if (brokenSmoke.activeSelf)
-        {
-            brokenSmoke.SetActive(false);
         }
 
         groundedPlayer = controller.isGrounded;
@@ -99,7 +99,6 @@ public class PlayerController : MonoBehaviour
             hitBox.SetActive(true);
         }
 
-        // Changes the height position of the player..
         if (boostTimer < boostDuration)
         {
             if (boostTimer == 0f)
@@ -113,33 +112,79 @@ public class PlayerController : MonoBehaviour
 
             fireSmoke.SetActive(true);
             smoke.SetActive(false);
+            smallSmoke.SetActive(false);
             controller.Move(boostDirection * Time.deltaTime * playerSpeed * speedBoostModifier);
 
             gameObject.transform.forward = boostDirection * Time.deltaTime * playerSpeed * speedBoostModifier;
         }
         else
         {
-            smoke.SetActive(true);
+            if(canBoost)
+            {
+                smoke.SetActive(true);
+                smallSmoke.SetActive(false);
+            }
+            else
+            {
+                smallSmoke.SetActive(true);
+                smoke.SetActive(false);
+            }
+            
+
             fireSmoke.SetActive(false);
             hitBox.SetActive(false);
         }
 
         lastFrameSwitching = switching;
 
+        SwitchBoat();
+
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
+
+        if (gameObject.GetComponent<PlayerInput>().enabled)
+        {
+            lastAction = 0;
+        }
+    }
+
+    private void Respawn()
+    {
+        if (respawnTimer < respawnDuration)
+        {
+            respawnTimer += Time.deltaTime;
+            return;
+        }
+        else if (brokenSmoke.activeSelf)
+        {
+            brokenSmoke.SetActive(false);
+        }
+    }
+
+    private void SwitchBoat()
+    {
         if (switching)
         {
-            Debug.Log(switching);
-            
             gameObject.GetComponent<PlayerInput>().enabled = false;
 
             otherShip.GetComponent<PlayerInput>().enabled = false;
             otherShip.GetComponent<PlayerInput>().enabled = true;
 
+            otherShip.GetComponent<PlayerController>().lastAction = 0;
+
             switching = false;
+
+            lastMove = move;
+            if (lastMove != Vector3.zero && !(boostTimer < boostDuration))
+            {
+                lastAction = 1;
+            }
+            else
+            {
+                lastAction = 0;
+            }
         }
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -164,12 +209,13 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "FishingZone")
         {
-            if (boosting && !(boostTimer < boostDuration) && move == Vector3.zero)
+            if ((boosting && !(boostTimer < boostDuration) && move == Vector3.zero) || lastAction == 2)
             {
                 //add fishing code here 
                 Debug.Log("Fishing");
                 
-              
+                //this is for passive fishing
+              lastAction = 2;
             }
         }
     }
