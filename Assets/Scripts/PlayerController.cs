@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float boostTimer;
 
     [SerializeField]
-    private GameObject smoke, fireSmoke;
+    private GameObject smoke, fireSmoke, playerBase;
     [SerializeField]
     private float gravityValue = -9.81f;
 
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 movementInput = Vector2.zero;
     private bool boosting = false;
+    private bool canBoost = true;
 
     private void Start()
     {
@@ -62,9 +63,10 @@ public class PlayerController : MonoBehaviour
 
         
 
-        if (boosting && !(boostTimer < boostDuration) && move != Vector3.zero)
+        if (boosting && !(boostTimer < boostDuration) && move != Vector3.zero && canBoost)
         {
             boostTimer = 0f;
+            canBoost = false;
         }
 
         // Changes the height position of the player..
@@ -93,5 +95,13 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == playerBase)
+        {
+            canBoost = true;
+        }
     }
 }
