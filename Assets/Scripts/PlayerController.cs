@@ -138,4 +138,14 @@ public class PlayerController : MonoBehaviour
             brokenSmoke.SetActive(true);
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "FishingZone")
+        {
+            if(boosting && !(boostTimer < boostDuration) && move == Vector3.zero)
+            {
+                //add fishing code here 
+            }
+        }
 }
