@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 135001164}
   m_Layer: 0
   m_Name: port P2
-  m_TagString: Untagged
+  m_TagString: P2Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,9 +172,9 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -912,7 +912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385792673495783979, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.41
+      value: -15.4
       objectReference: {fileID: 0}
     - target: {fileID: 7385792673495783979, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -960,7 +960,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8394661219458683048, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: boostSteering
-      value: 0.01
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394661219458683048, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
+      propertyPath: speedBoostModifier
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8586060755246444793, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_Actions
@@ -1201,7 +1205,7 @@ GameObject:
   - component: {fileID: 1131140248}
   m_Layer: 0
   m_Name: Fishing zone
-  m_TagString: Untagged
+  m_TagString: FishingZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1221,9 +1225,9 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -1588,7 +1592,7 @@ GameObject:
   - component: {fileID: 1737951965}
   m_Layer: 0
   m_Name: port P1
-  m_TagString: Untagged
+  m_TagString: P1Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1623,9 +1627,9 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -1736,6 +1740,14 @@ PrefabInstance:
     - target: {fileID: 7385792673495783979, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394661219458683048, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
+      propertyPath: boostSteering
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394661219458683048, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
+      propertyPath: speedBoostModifier
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8586060755246444793, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: m_DefaultControlScheme

@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
             boostTimer += Time.deltaTime;
 
             Vector3 boostManeuver = new Vector3(movementInput.x, 0, movementInput.y).normalized * boostSteering;
-            boostDirection = new Vector3(boostDirection.x + boostManeuver.x , 0f, boostDirection.z + boostManeuver.z);
+            boostDirection = new Vector3(boostDirection.x + boostManeuver.x , 0f, boostDirection.z + boostManeuver.z).normalized;
 
             fireSmoke.SetActive(true);
             smoke.SetActive(false);
