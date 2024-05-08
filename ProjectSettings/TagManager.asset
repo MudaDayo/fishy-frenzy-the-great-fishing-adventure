@@ -7,6 +7,8 @@ TagManager:
   - P1Base
   - P2Base
   - FishingZone
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX

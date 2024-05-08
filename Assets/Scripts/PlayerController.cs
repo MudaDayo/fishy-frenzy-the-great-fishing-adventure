@@ -11,12 +11,17 @@ public class PlayerController : MonoBehaviour
     private float playerSpeed = 2.0f;
 
     [SerializeField]
-    private float boostDuration, boostSteering;
-
-    private float boostTimer;
+    private string enemyTag;
 
     [SerializeField]
-    private GameObject smoke, fireSmoke, playerBase;
+    private float boostDuration, boostSteering, respawnDuration;
+
+    private float boostTimer, respawnTimer;
+    [SerializeField]
+    private Vector3 startPosition;
+
+    [SerializeField]
+    private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke;
     [SerializeField]
     private float gravityValue = -9.81f;
 
@@ -30,7 +35,13 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+
+        startPosition = transform.position;
+
         boostTimer = boostDuration;
+        respawnTimer = respawnDuration;
+
+        hitBox.SetActive(false);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -45,6 +56,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        if(respawnTimer < respawnDuration)
+        {
+            respawnTimer += Time.deltaTime;
+            return;
+        }
+        else if(brokenSmoke.activeSelf)
+        {
+            brokenSmoke.SetActive(false);
+        }
+
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
@@ -67,6 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             boostTimer = 0f;
             canBoost = false;
+            hitBox.SetActive(true);
         }
 
         // Changes the height position of the player..
@@ -91,6 +114,7 @@ public class PlayerController : MonoBehaviour
         {
             smoke.SetActive(true);
             fireSmoke.SetActive(false);
+            hitBox.SetActive(false);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -99,9 +123,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.tag);
         if (other.gameObject == playerBase)
         {
             canBoost = true;
+        }
+        if (other.gameObject.tag == enemyTag)
+        {
+            controller.enabled = false;
+            transform.position = startPosition;
+            canBoost = true;
+            controller.enabled = true;
+            respawnTimer = 0f;
+            brokenSmoke.SetActive(true);
         }
     }
 }
