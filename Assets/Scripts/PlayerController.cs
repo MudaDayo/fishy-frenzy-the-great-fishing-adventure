@@ -5,10 +5,15 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    private Vector3 playerVelocity;
+    private Vector3 playerVelocity, boostDirection;
     private bool groundedPlayer;
     [SerializeField]
     private float playerSpeed = 2.0f;
+
+    [SerializeField]
+    private float boostDuration, boostSteering;
+
+    private float boostTimer;
 
     [SerializeField]
     private GameObject smoke, fireSmoke;
@@ -24,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        boostTimer = boostDuration;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -45,20 +51,39 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y).normalized;
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
-        if (move != Vector3.zero)
+        if (!(boostTimer < boostDuration))
         {
-            gameObject.transform.forward = move;
+            controller.Move(move * Time.deltaTime * playerSpeed);
+            if (move != Vector3.zero)
+            {
+                gameObject.transform.forward = move;
+            }
+        }
+
+        
+
+        if (boosting && !(boostTimer < boostDuration) && move != Vector3.zero)
+        {
+            boostTimer = 0f;
         }
 
         // Changes the height position of the player..
-        if (boosting)
+        if (boostTimer < boostDuration)
         {
+            if(boostTimer == 0f)
+            {
+                boostDirection = new Vector3(movementInput.x, 0, movementInput.y).normalized;
+            }
+            boostTimer += Time.deltaTime;
+
+            Vector3 boostManeuver = new Vector3(movementInput.x, 0, movementInput.y).normalized * boostSteering;
+            boostDirection = new Vector3(boostDirection.x + boostManeuver.x , 0f, boostDirection.z + boostManeuver.z);
+
             fireSmoke.SetActive(true);
             smoke.SetActive(false);
-            Vector3 boostMove = new Vector3(movementInput.x, 0, movementInput.y).normalized;
-            controller.Move(boostMove * Time.deltaTime * playerSpeed * speedBoostModifier);
+            controller.Move(boostDirection * Time.deltaTime * playerSpeed * speedBoostModifier);
+
+            gameObject.transform.forward = boostDirection * Time.deltaTime * playerSpeed * speedBoostModifier;
         }
         else
         {

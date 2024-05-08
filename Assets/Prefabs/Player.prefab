@@ -9934,6 +9934,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 2
+  boostDuration: 3
+  boostSteering: 1
   smoke: {fileID: 3776190298290030312}
   fireSmoke: {fileID: 6828069918060721689}
   gravityValue: -9.81
