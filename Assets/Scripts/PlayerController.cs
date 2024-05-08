@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 startPosition;
 
     [SerializeField]
-    private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke;
+    private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip;
     [SerializeField]
     private float gravityValue = -9.81f;
 
@@ -32,7 +32,9 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 movementInput = Vector2.zero;
     private bool boosting = false;
+    private bool switching = false;
     private bool canBoost = true;
+    private bool lastFrameSwitching;
 
     private void Start()
     {
@@ -54,6 +56,11 @@ public class PlayerController : MonoBehaviour
     public void OnBoost(InputAction.CallbackContext context)
     {
         boosting = context.action.triggered;
+    }
+
+    public void OnSwitch(InputAction.CallbackContext context)
+    {
+        switching = context.action.triggered;
     }
 
     void Update()
@@ -85,8 +92,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
-
         if (boosting && !(boostTimer < boostDuration) && move != Vector3.zero && canBoost)
         {
             boostTimer = 0f;
@@ -117,6 +122,20 @@ public class PlayerController : MonoBehaviour
             smoke.SetActive(true);
             fireSmoke.SetActive(false);
             hitBox.SetActive(false);
+        }
+
+        lastFrameSwitching = switching;
+
+        if (switching)
+        {
+            Debug.Log(switching);
+            
+            gameObject.GetComponent<PlayerInput>().enabled = false;
+
+            otherShip.GetComponent<PlayerInput>().enabled = false;
+            otherShip.GetComponent<PlayerInput>().enabled = true;
+
+            switching = false;
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
