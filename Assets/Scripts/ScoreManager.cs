@@ -11,9 +11,9 @@ public class ScoreManager : MonoBehaviour
 
     private int scoreP1 = 0;
     private int scoreP2 = 0;
-    public int winningScore = 5; // Set the winning score
+    public int winningScore = 10; // Set the winning score
 
-    private bool gameEnded = false; // Flag to track if the game has ended
+    private bool gameEnded = false; // Track if the game has ended
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class ScoreManager : MonoBehaviour
     // Increment the score for the given player
     public void IncrementScore(string playerTag)
     {
-        if (gameEnded) return; // If the game has ended, do not update the score
+        if (gameEnded) return; 
 
         if (playerTag == "Player1")
         {
@@ -51,22 +51,24 @@ public class ScoreManager : MonoBehaviour
         {
             // Player 1 wins
             ShowResult("Player 1 Wins!", "Player 2 Loses!");
-            gameEnded = true; // Set the flag to indicate that the game has ended
+            gameEnded = true;
+            ResetPlayersPosition();
         }
         else if (scoreP2 >= winningScore)
         {
             // Player 2 wins
             ShowResult("Player 2 Wins!", "Player 1 Loses!");
-            gameEnded = true; // Set the flag to indicate that the game has ended
+            gameEnded = true;
+            ResetPlayersPosition();
         }
     }
 
-    // Show the result on the screen
+    
     void ShowResult(string winText, string loseText)
     {
         resultText.text = winText;
         // Optionally, you can add some delay or animation before resetting the game
-        // For example: StartCoroutine(ResetGame());
+        StartCoroutine(ResetGame());
     }
 
     // Reset the game (optional)
@@ -79,5 +81,28 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreTexts();
         resultText.text = "";
         gameEnded = false; // Reset the game ended flag
+        ResetPlayersPosition();
+        if (scoreP1 >= winningScore)
+        {
+            scoreP1--;
+        }
+        else if (scoreP2 >= winningScore)
+        {
+            scoreP2--;
+        }
+        // Reset the players' positions
+
+    }
+
+    // Reset the players' positions
+    void ResetPlayersPosition()
+    {
+        // Find all player objects and reset their positions
+        PlayerController[] players = FindObjectsOfType<PlayerController>();
+        foreach (PlayerController player in players)
+        {
+            player.ResetPosition();
+            player.ResetBoost();
+        }
     }
 }

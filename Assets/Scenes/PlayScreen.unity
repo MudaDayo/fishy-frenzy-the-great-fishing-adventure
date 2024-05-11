@@ -294,6 +294,10 @@ PrefabInstance:
       propertyPath: playerBase
       value: 
       objectReference: {fileID: 1737951963}
+    - target: {fileID: 8394661219458683048, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
+      propertyPath: fishingTime
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8586060755246444793, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -618,7 +622,7 @@ MonoBehaviour:
   scoreP1Text: {fileID: 1925087762}
   scoreP2Text: {fileID: 1130549246}
   resultText: {fileID: 1303437344}
-  winningScore: 5
+  winningScore: 10
 --- !u!1 &514043855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,6 +1459,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 135001162}
     - target: {fileID: 8394661219458683048, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
+      propertyPath: fishingTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394661219458683048, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: playerSpeed
       value: 4
       objectReference: {fileID: 0}
@@ -1907,6 +1915,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 135001162}
     - target: {fileID: 8394661219458683048, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
+      propertyPath: fishingTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394661219458683048, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: playerSpeed
       value: 4
       objectReference: {fileID: 0}
@@ -2078,6 +2090,10 @@ PrefabInstance:
       propertyPath: playerBase
       value: 
       objectReference: {fileID: 1737951963}
+    - target: {fileID: 8394661219458683048, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
+      propertyPath: fishingTime
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8586060755246444793, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_DefaultControlScheme
       value: Keyboard - WASD

@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private bool hasCaughtFish = false; // Flag to track if the player has already caught a fish
 
-    [SerializeField] private float fishingTime = 3f; // Time required to catch a fish
+    [SerializeField] private float fishingTime = 6f; // Time required to catch a fish
 
     private float currentFishingTime = 0f; // Time spent fishing
 
@@ -261,7 +261,14 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
+    public void ResetPosition()
+    {
+        transform.position = startPosition;
+    }
+    public void ResetBoost()
+    {
+        canBoost = true; // Reset boost state to active
+    }
     private void StartFishing()
     {
         if (!fishing && !hasCaughtFish) // Check if the player is not already fishing and hasn't caught a fish yet
