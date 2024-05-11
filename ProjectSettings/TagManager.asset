@@ -9,6 +9,8 @@ TagManager:
   - FishingZone
   - Player1
   - Player2
+  - Player1Ship1
+  - Player1Ship2
   layers:
   - Default
   - TransparentFX

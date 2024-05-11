@@ -242,6 +242,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P1 Ship 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7204307328573273047, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
+      propertyPath: m_TagString
+      value: Player1
+      objectReference: {fileID: 0}
     - target: {fileID: 7385792673495783979, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17
@@ -1939,6 +1943,10 @@ PrefabInstance:
     - target: {fileID: 7204307328573273047, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_Name
       value: P1 Ship 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204307328573273047, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
+      propertyPath: m_TagString
+      value: Player1
       objectReference: {fileID: 0}
     - target: {fileID: 7385792673495783979, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_LocalPosition.x
