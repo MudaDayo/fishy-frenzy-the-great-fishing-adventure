@@ -268,6 +268,12 @@ public class PlayerController : MonoBehaviour
         {
             isInBase = false;
         }
+
+        if (other.gameObject.tag == "FishingZone")
+        {
+            currentFishingTime = 0f;
+            fishing = false;
+        }
     }
 
     private void OnTriggerStay(Collider other)
