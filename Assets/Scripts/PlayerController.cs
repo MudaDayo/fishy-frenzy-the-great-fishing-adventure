@@ -19,13 +19,15 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Vector3 startPosition;
 
-    [SerializeField] private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke;
+    [SerializeField] private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke, boatWithFish, boatNoFish;
 
     [SerializeField] private float gravityValue = -9.81f;
 
     [SerializeField] private float speedBoostModifier = 1.5f;
 
     private Vector3 move, lastMove;
+
+    private bool isInBase = false;
 
     private Vector2 movementInput = Vector2.zero;
 
@@ -81,6 +83,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        ReturnFishToBase();
+
         if (respawnTimer < respawnDuration)
         {
             respawnTimer += Time.deltaTime;
@@ -180,7 +184,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Fishing mechanics
-        if (fishing)
+        if (fishing && !hasCaughtFish)
         {
             // Increment the fishing timer
             currentFishingTime += Time.deltaTime;
@@ -191,7 +195,12 @@ public class PlayerController : MonoBehaviour
                 // Caught a fish!
                 Debug.Log("Caught a fish!");
                 hasCaughtFish = true; // Set the flag to true since the player has caught a fish
-                StopFishing();
+
+                boatNoFish.SetActive(false);
+                boatWithFish.SetActive(true);
+
+                //StopFishing();
+                fishing = false;
                 currentFishingTime = 0f; // Reset the fishing timer
                 
             }
@@ -228,19 +237,33 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
         if (other.gameObject == playerBase)
         {
             canBoost = true;
+            isInBase = true;
         }
         if (other.gameObject.tag == enemyTag)
         {
+
+            boatWithFish.SetActive(false);
+            boatNoFish.SetActive(true);
+
+            hasCaughtFish = false;
+
             controller.enabled = false;
             transform.position = startPosition;
             canBoost = true;
             controller.enabled = true;
             respawnTimer = 0f;
             brokenSmoke.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == playerBase)
+        {
+            isInBase = false;
         }
     }
 
@@ -254,11 +277,11 @@ public class PlayerController : MonoBehaviour
                 // Start fishing
                 StartFishing();
             }
-            else
+/*            else
             {
                 // Stop fishing if the player moves
                 StopFishing();
-            }
+            }*/
         }
     }
     public void ResetPosition()
@@ -278,24 +301,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void StopFishing()
+    private void ReturnFishToBase()
     {
-        if (fishing)
-        {
-            fishing = false;
-            if (hasCaughtFish)
+            if (hasCaughtFish && isInBase)
             {
-                Debug.Log("Caught a fish!");
                 // Assuming ScoreManager is a singleton or is available in the scene
                 ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
                 if (scoreManager != null)
                 {
                     scoreManager.IncrementScore(gameObject.tag);
                 }
-                hasCaughtFish = false; // Reset the flag when the player stops fishing
+
+                boatWithFish.SetActive(false);
+                boatNoFish.SetActive(true);
+
+                hasCaughtFish = false; // Reset the flag when the player is back to base
             }
-            Debug.Log("Stopped fishing");
-        }
     }
     private bool IsInFishingZone()
     {

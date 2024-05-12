@@ -19819,6 +19819,8 @@ MonoBehaviour:
   brokenSmoke: {fileID: 6102656475214000479}
   otherShip: {fileID: 0}
   smallSmoke: {fileID: 2222001248685709319}
+  boatWithFish: {fileID: 3090857654856976015}
+  boatNoFish: {fileID: 4743838951732568772}
   gravityValue: -9.81
   speedBoostModifier: 2.5
   fishingTime: 6
@@ -20010,6 +20012,11 @@ PrefabInstance:
 --- !u!4 &2427226918118775861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7d678e6906bf5de428a2897003743761, type: 3}
+  m_PrefabInstance: {fileID: 2748752100753226718}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3090857654856976015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d678e6906bf5de428a2897003743761, type: 3}
   m_PrefabInstance: {fileID: 2748752100753226718}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5554321205691113365
@@ -20221,6 +20228,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35f2d6c605632b04c994e45c53ec2858, type: 3}
+--- !u!1 &4743838951732568772 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 35f2d6c605632b04c994e45c53ec2858, type: 3}
+  m_PrefabInstance: {fileID: 5554321205691113365}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5376823825572706430 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 35f2d6c605632b04c994e45c53ec2858, type: 3}
