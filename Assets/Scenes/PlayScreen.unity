@@ -238,6 +238,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4581774186901601702, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7204307328573273047, guid: c709cb4eefb492143b8e5cacdbfe153c, type: 3}
       propertyPath: m_Name
       value: P1 Ship 2
@@ -1858,6 +1862,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6670246032334710668, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7204307328573273047, guid: 02ddeb809a96eff4eb64023a4542d95d, type: 3}
       propertyPath: m_Name
       value: P2 Ship 2

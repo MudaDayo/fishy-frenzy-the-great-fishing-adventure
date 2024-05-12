@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Vector3 startPosition;
 
-    [SerializeField] private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke, boatWithFish, boatNoFish;
+    [SerializeField] private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke, boatWithFish, boatNoFish, indicatorFish;
 
     [SerializeField] private float gravityValue = -9.81f;
 
@@ -220,6 +220,9 @@ public class PlayerController : MonoBehaviour
         otherShip.GetComponent<PlayerInput>().enabled = true;
 
         otherShip.GetComponent<PlayerController>().lastAction = 0;
+
+        indicatorFish.SetActive(false);
+        otherShip.GetComponent<PlayerController>().indicatorFish.SetActive(true);
 
         switching = false;
 
