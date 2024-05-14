@@ -247,7 +247,10 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == enemyTag)
         {
-
+            lastAction = 0;
+            fishing = false;
+            hitBox.SetActive(false);
+            boostTimer = boostDuration;
             boatWithFish.SetActive(false);
             boatNoFish.SetActive(true);
 
