@@ -309,6 +309,7 @@ public class PlayerController : MonoBehaviour
         boatWithFish.SetActive(false);
         boatNoFish.SetActive(true);
         controller.enabled = true;
+        lastAction = 0;
     }
     public void ResetBoost()
     {
