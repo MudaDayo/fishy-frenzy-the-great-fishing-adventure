@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour
             // Check if enough time has passed to catch a fish
             if (currentFishingTime >= fishingTime)
             {
-                // Caught a fish!
+                
                 Debug.Log("Caught a fish!");
                 hasCaughtFish = true; // Set the flag to true since the player has caught a fish
 
@@ -298,7 +298,17 @@ public class PlayerController : MonoBehaviour
     }
     public void ResetPosition()
     {
-        transform.position = startPosition;
+        controller.enabled = false; 
+        transform.position = startPosition; 
+         
+        playerVelocity = Vector3.zero;
+        
+        hasCaughtFish = false;
+        currentFishingTime = 0f;
+        isInBase = false;
+        boatWithFish.SetActive(false);
+        boatNoFish.SetActive(true);
+        controller.enabled = true;
     }
     public void ResetBoost()
     {

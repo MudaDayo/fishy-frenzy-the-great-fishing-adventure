@@ -18,7 +18,7 @@ public class ScoreManager : MonoBehaviour
 
     private int scoreP1 = 0;
     private int scoreP2 = 0;
-    public int winningScore = 10; // Set the winning score
+    public int winningScore = 2; // Set the winning score
 
     private bool gameEnded = false; // Track if the game has ended
 
@@ -41,11 +41,13 @@ public class ScoreManager : MonoBehaviour
 
         if (playerTag == "Player1")
         {
+            Debug.Log("P1 + 1");
             scoreP1++;
         }
         else if (playerTag == "Player2")
         {
             scoreP2++;
+            Debug.Log("P2 + 1");
         }
         UpdateScoreTexts();
         CheckWinCondition();
@@ -58,22 +60,23 @@ public class ScoreManager : MonoBehaviour
         {
             // Player 1 wins
             ShowResult("Player 1 Wins!", "Player 2 Loses!");
-
+            ResetPlayersPosition();
             if (timer > endGameTimer)
             {
                 gameEnded = true;
                 
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 ResetPlayersPosition();
-                timer += Time.deltaTime;
+                
             }
+            timer += Time.deltaTime;
         }
         else if (scoreP2 >= winningScore)
         {
             // Player 2 wins
             ShowResult("Player 2 Wins!", "Player 1 Loses!");
-
-            if(timer > endGameTimer)
+            ResetPlayersPosition();
+            if (timer > endGameTimer)
             {
                 gameEnded = true;
                 
@@ -102,6 +105,7 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreTexts();
         resultText.text = "";
         gameEnded = false; // Reset the game ended flag
+        
         ResetPlayersPosition();
         if (scoreP1 >= winningScore)
         {
@@ -118,6 +122,7 @@ public class ScoreManager : MonoBehaviour
     // Reset the players' positions
     void ResetPlayersPosition()
     {
+        Debug.Log("ResetPosition");
         // Find all player objects and reset their positions
         PlayerController[] players = FindObjectsOfType<PlayerController>();
         foreach (PlayerController player in players)
