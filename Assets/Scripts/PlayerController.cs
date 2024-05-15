@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private float boostTimer, respawnTimer;
 
     [SerializeField] private Vector3 startPosition;
+   
 
     [SerializeField] private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke, boatWithFish, boatNoFish, indicatorFish;
 
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
 
         startPosition = transform.position;
+        
 
         boostTimer = boostDuration;
         respawnTimer = respawnDuration;
@@ -298,18 +300,31 @@ public class PlayerController : MonoBehaviour
     }
     public void ResetPosition()
     {
-        controller.enabled = false; 
-        transform.position = startPosition; 
-         
+        controller.enabled = false;
+
+        hitBox.SetActive(false);
+
+        transform.position = startPosition;
+
+        
+
         playerVelocity = Vector3.zero;
         
         hasCaughtFish = false;
+
         currentFishingTime = 0f;
+
         isInBase = false;
+
         boatWithFish.SetActive(false);
+
         boatNoFish.SetActive(true);
+
         controller.enabled = true;
+
         lastAction = 0;
+
+        respawnTimer = respawnDuration;
     }
     public void ResetBoost()
     {
