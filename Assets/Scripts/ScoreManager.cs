@@ -60,7 +60,7 @@ public class ScoreManager : MonoBehaviour
         {
             // Player 1 wins
             ShowResult("Player 1 Wins!", "Player 2 Loses!");
-            //ResetPlayersPosition();
+            ResetPlayersPosition();
             if (timer > endGameTimer)
             {
                 gameEnded = true;
@@ -75,7 +75,7 @@ public class ScoreManager : MonoBehaviour
         {
             // Player 2 wins
             ShowResult("Player 2 Wins!", "Player 1 Loses!");
-            //ResetPlayersPosition();
+            ResetPlayersPosition();
             if (timer > endGameTimer)
             {
                 gameEnded = true;
