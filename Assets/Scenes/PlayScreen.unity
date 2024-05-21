@@ -628,7 +628,7 @@ MonoBehaviour:
   resultText: {fileID: 1303437344}
   timer: 0
   endGameTimer: 5
-  winningScore: 2
+  winningScore: 5
 --- !u!1 &514043855
 GameObject:
   m_ObjectHideFlags: 0
