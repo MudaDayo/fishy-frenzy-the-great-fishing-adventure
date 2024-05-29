@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private float boostTimer, respawnTimer;
 
     [SerializeField] private Vector3 startPosition;
-   
+
 
     [SerializeField] private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke, boatWithFish, boatNoFish, indicatorFish, waterSplash, buttonPrompt;
 
@@ -42,8 +42,6 @@ public class PlayerController : MonoBehaviour
 
     private bool fishing = false;
 
-    private bool fishButtonPressed = false;
-
     private bool hasCaughtFish = false; // Flag to track if the player has already caught a fish
 
     [SerializeField] private float fishingTime = 6f; // Time required to catch a fish
@@ -61,7 +59,7 @@ public class PlayerController : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
 
         startPosition = transform.position;
-        
+
 
         boostTimer = boostDuration;
         respawnTimer = respawnDuration;
@@ -71,11 +69,6 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnMove(InputAction.CallbackContext context)
-    {
-        fishButtonPressed = context.action.triggered;
-    }
-
-    public void OnFish(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
     }
@@ -204,33 +197,21 @@ public class PlayerController : MonoBehaviour
             // Check if enough time has passed to catch a fish
             if (currentFishingTime >= fishingTime)
             {
-                buttonPrompt.SetActive(true);
-                /*if (controller.velocity.magnitude < 0.1f && fishButtonPressed)
-                {*/
-                    Debug.Log("Caught a fish!");
-                    hasCaughtFish = true; // Set the flag to true since the player has caught a fish
 
-                    boatNoFish.SetActive(false);
-                    boatWithFish.SetActive(true);
-                    
+                Debug.Log("Caught a fish!");
+                hasCaughtFish = true; // Set the flag to true since the player has caught a fish
 
-                    //StopFishing();
-                    fishing = false;
-                    currentFishingTime = 0f; // Reset the fishing timer
-                //}
-                /*else if (controller.velocity.magnitude > 0.1f)
-                {
-                    buttonPrompt.SetActive(false);
-                    waterSplash.SetActive(false);
+                boatNoFish.SetActive(false);
+                boatWithFish.SetActive(true);
 
-                    // Reset the fishing timer if the player is not fishing
-                    currentFishingTime = 0f;
-                }*/
+                //StopFishing();
+                fishing = false;
+                currentFishingTime = 0f; // Reset the fishing timer
+
             }
         }
         else
         {
-            buttonPrompt.SetActive(false);
             waterSplash.SetActive(false);
 
             // Reset the fishing timer if the player is not fishing
@@ -315,11 +296,11 @@ public class PlayerController : MonoBehaviour
                 // Start fishing
                 StartFishing();
             }
-/*            else
-            {
-                // Stop fishing if the player moves
-                StopFishing();
-            }*/
+            /*            else
+                        {
+                            // Stop fishing if the player moves
+                            StopFishing();
+                        }*/
         }
     }
     public void ResetPosition()
@@ -330,10 +311,10 @@ public class PlayerController : MonoBehaviour
 
         transform.position = startPosition;
 
-        
+
 
         playerVelocity = Vector3.zero;
-        
+
         hasCaughtFish = false;
 
         currentFishingTime = 0f;
@@ -365,20 +346,20 @@ public class PlayerController : MonoBehaviour
 
     private void ReturnFishToBase()
     {
-            if (hasCaughtFish && isInBase)
+        if (hasCaughtFish && isInBase)
+        {
+            // Assuming ScoreManager is a singleton or is available in the scene
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+            if (scoreManager != null)
             {
-                // Assuming ScoreManager is a singleton or is available in the scene
-                ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
-                if (scoreManager != null)
-                {
-                    scoreManager.IncrementScore(gameObject.tag);
-                }
-
-                boatWithFish.SetActive(false);
-                boatNoFish.SetActive(true);
-
-                hasCaughtFish = false; // Reset the flag when the player is back to base
+                scoreManager.IncrementScore(gameObject.tag);
             }
+
+            boatWithFish.SetActive(false);
+            boatNoFish.SetActive(true);
+
+            hasCaughtFish = false; // Reset the flag when the player is back to base
+        }
     }
     private bool IsInFishingZone()
     {
