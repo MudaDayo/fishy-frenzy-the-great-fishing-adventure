@@ -1,71 +1,62 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-
     private Vector3 playerVelocity, boostDirection;
-
     private bool groundedPlayer;
 
     [SerializeField] private float playerSpeed = 2.0f;
-
     [SerializeField] private string enemyTag;
-
     [SerializeField] private float boostDuration, boostSteering, respawnDuration, afkSlowdown;
-
     private float boostTimer, respawnTimer;
 
     [SerializeField] private Vector3 startPosition;
-   
-
     [SerializeField] private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke, boatWithFish, boatNoFish, indicatorFish;
-
     [SerializeField] private float gravityValue = -9.81f;
-
     [SerializeField] private float speedBoostModifier = 1.5f;
-
     private Vector3 move, lastMove;
-
     private bool isInBase = false;
-
     private Vector2 movementInput = Vector2.zero;
-
     private bool boosting = false;
-
     private bool switching = false;
-
     private bool canBoost = true;
-
     private bool lastFrameSwitching;
-
     private bool fishing = false;
-
-    private bool hasCaughtFish = false; // Flag to track if the player has already caught a fish
-
-    [SerializeField] private float fishingTime = 6f; // Time required to catch a fish
-
-    private float currentFishingTime = 0f; // Time spent fishing
-
-    //tried to use enum, too lazy... 0 for nothing, 1 to move, 2 to fish
-
+    private bool hasCaughtFish = false;
+    [SerializeField] private float fishingTime = 6f;
+    private float currentFishingTime = 0f;
     public int lastAction = 0;
-
     private ScoreManager scoreManager;
+
+    //skillcheck
+    public Image skillCheckBar;
+    public Image successZone;
+    public Image Indicator;
+
+    public float skillCheckSpeed = 200f;
+
+    private bool isSkillCheckActive = false;
+    private float skillCheckBarStartPosition;
+    private bool skillCheckSuccess = false;
+
 
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
-
         startPosition = transform.position;
-        
-
         boostTimer = boostDuration;
         respawnTimer = respawnDuration;
-
         hitBox.SetActive(false);
         scoreManager = FindObjectOfType<ScoreManager>();
+        //skillcheck
+        skillCheckBarStartPosition = skillCheckBar.transform.localPosition.x;
+        skillCheckBar.gameObject.SetActive(false);
+        successZone.gameObject.SetActive(false);
+        Indicator.gameObject.SetActive(false);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -175,8 +166,6 @@ public class PlayerController : MonoBehaviour
             SwitchBoat();
         }
 
-
-
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
@@ -194,17 +183,14 @@ public class PlayerController : MonoBehaviour
             // Check if enough time has passed to catch a fish
             if (currentFishingTime >= fishingTime)
             {
-                
                 Debug.Log("Caught a fish!");
                 hasCaughtFish = true; // Set the flag to true since the player has caught a fish
 
                 boatNoFish.SetActive(false);
                 boatWithFish.SetActive(true);
 
-                //StopFishing();
                 fishing = false;
                 currentFishingTime = 0f; // Reset the fishing timer
-                
             }
         }
         else
@@ -212,22 +198,36 @@ public class PlayerController : MonoBehaviour
             // Reset the fishing timer if the player is not fishing
             currentFishingTime = 0f;
         }
+
+        //skillcheck
+        if (isSkillCheckActive)
+        {
+            UpdateSkillCheck();
+        }
+        
+    }
+
+    public void ResetPosition()
+    {
+        
+        transform.position = startPosition;
+    }
+
+    public void ResetBoost()
+    {
+        
+        canBoost = true;
     }
 
     private void SwitchBoat()
     {
         gameObject.GetComponent<PlayerInput>().enabled = false;
-
         otherShip.GetComponent<PlayerInput>().enabled = false;
         otherShip.GetComponent<PlayerInput>().enabled = true;
-
         otherShip.GetComponent<PlayerController>().lastAction = 0;
-
         indicatorFish.SetActive(false);
         otherShip.GetComponent<PlayerController>().indicatorFish.SetActive(true);
-
         switching = false;
-
         lastMove = move;
         if (lastMove != Vector3.zero && !(boostTimer < boostDuration))
         {
@@ -237,7 +237,6 @@ public class PlayerController : MonoBehaviour
         {
             lastAction = 0;
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -255,15 +254,24 @@ public class PlayerController : MonoBehaviour
             boostTimer = boostDuration;
             boatWithFish.SetActive(false);
             boatNoFish.SetActive(true);
-
             hasCaughtFish = false;
-
             controller.enabled = false;
             transform.position = startPosition;
             canBoost = true;
             controller.enabled = true;
             respawnTimer = 0f;
             brokenSmoke.SetActive(true);
+            }
+
+        // Check if the player is within the fishing zone
+        if (other.gameObject.CompareTag("FishingZone"))
+        {
+            StartSkillCheck();
+
+            // Set the visibility of the UI elements to true
+            skillCheckBar.gameObject.SetActive(true);
+            successZone.gameObject.SetActive(true);
+            Indicator.gameObject.SetActive(true);
         }
     }
 
@@ -274,102 +282,169 @@ public class PlayerController : MonoBehaviour
             isInBase = false;
         }
 
-        if (other.gameObject.tag == "FishingZone")
+        if (other.gameObject.CompareTag("FishingZone"))
         {
-            currentFishingTime = 0f;
-            fishing = false;
+            StopFishing();
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "FishingZone")
+        if (other.gameObject.CompareTag("FishingZone"))
         {
             // Check if the player is standing still
             if (controller.velocity.magnitude < 0.1f)
             {
                 // Start fishing
-                StartFishing();
+                
+                // Activate the skill check when starting fishing
+                StartSkillCheck();
+
+                // Set the visibility of the UI elements to true
+                //skillCheckBar.gameObject.SetActive(true);
+                //successZone.gameObject.SetActive(true);
+                //Indicator.gameObject.SetActive(true);
             }
-/*            else
+            else
             {
                 // Stop fishing if the player moves
                 StopFishing();
-            }*/
+            }
         }
     }
-    public void ResetPosition()
+
+    private void ReturnFishToBase()
     {
-        controller.enabled = false;
+        if (hasCaughtFish && isInBase)
+        {
+            // Assuming ScoreManager is a singleton or is available in the scene
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+            if (scoreManager != null)
+            {
+                scoreManager.IncrementScore(gameObject.tag);
+            }
 
-        hitBox.SetActive(false);
+            boatWithFish.SetActive(false);
+            boatNoFish.SetActive(true);
 
-        transform.position = startPosition;
-
-        
-
-        playerVelocity = Vector3.zero;
-        
-        hasCaughtFish = false;
-
-        currentFishingTime = 0f;
-
-        isInBase = false;
-
-        boatWithFish.SetActive(false);
-
-        boatNoFish.SetActive(true);
-
-        controller.enabled = true;
-
-        lastAction = 0;
-
-        respawnTimer = respawnDuration;
+            hasCaughtFish = false; // Reset the flag when the player is back to base
+        }
     }
-    public void ResetBoost()
-    {
-        canBoost = true; // Reset boost state to active
-    }
+
     private void StartFishing()
     {
-        if (!fishing && !hasCaughtFish) // Check if the player is not already fishing and hasn't caught a fish yet
+        
+        if (skillCheckSuccess)
         {
             fishing = true;
             Debug.Log("Started fishing");
         }
     }
 
-    private void ReturnFishToBase()
+    private void StopFishing()
     {
-            if (hasCaughtFish && isInBase)
-            {
-                // Assuming ScoreManager is a singleton or is available in the scene
-                ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
-                if (scoreManager != null)
-                {
-                    scoreManager.IncrementScore(gameObject.tag);
-                }
-
-                boatWithFish.SetActive(false);
-                boatNoFish.SetActive(true);
-
-                hasCaughtFish = false; // Reset the flag when the player is back to base
-            }
-    }
-    private bool IsInFishingZone()
-    {
-        // Get all colliders overlapping with the player's position
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f);
-
-        // Check if any of the colliders have the tag "FishingZone"
-        foreach (Collider collider in colliders)
+        fishing = false;
+        // If the player stops fishing, hide the skill check elements
+        if (isSkillCheckActive)
         {
-            if (collider.CompareTag("FishingZone"))
-            {
-                return true; // Player is within a collider with the FishingZone tag
-            }
+            EndSkillCheck();
+        }
+    }
+
+    private void UpdateSkillCheck()
+    {
+        // Calculate the maximum and minimum positions for the indicator
+        float maxPosY = skillCheckBar.transform.localPosition.y + (skillCheckBar.rectTransform.rect.height / 2);
+        float minPosY = skillCheckBar.transform.localPosition.y - (skillCheckBar.rectTransform.rect.height / 2);
+
+        // Move the indicator vertically
+        Indicator.transform.localPosition += Vector3.up * skillCheckSpeed * Time.deltaTime;
+
+        // Check if the indicator reaches the top or bottom
+        if (Indicator.transform.localPosition.y >= maxPosY)
+        {
+            // If the indicator reaches the top, move it back down
+            Indicator.transform.localPosition = new Vector3(Indicator.transform.localPosition.x, maxPosY, Indicator.transform.localPosition.z);
+            skillCheckSpeed *= -1; // Reverse the direction
+        }
+        else if (Indicator.transform.localPosition.y <= minPosY)
+        {
+            // If the indicator reaches the bottom, move it back up
+            Indicator.transform.localPosition = new Vector3(Indicator.transform.localPosition.x, minPosY, Indicator.transform.localPosition.z);
+            skillCheckSpeed *= -1; // Reverse the direction
         }
 
-        return false; // Player is not within any collider with the FishingZone tag
+        // Check for success condition
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CheckSkillCheckResult();
+        }
     }
+
+    private void CheckSkillCheckResult()
+    {
+        float barPosition = skillCheckBar.transform.localPosition.x;
+
+        // Check if the skill check bar is within the success zone
+        if (barPosition <= successZone.transform.localPosition.x + (successZone.rectTransform.rect.width / 2))
+        {
+            skillCheckSuccess = true;
+            skillCheckBar.gameObject.SetActive(false);
+            successZone.gameObject.SetActive(false);
+            Indicator.gameObject.SetActive(false);
+        }
+        else
+        {
+            skillCheckSuccess = false;
+        }
+
+        // End the skill check
+        EndSkillCheck(); // Call EndSkillCheck method to hide the skill check
+    }
+
+    private void FailSkillCheck()
+    {
+        // Handle skill check failure
+        skillCheckSuccess = false;
+        skillCheckBar.gameObject.SetActive(false);
+        successZone.gameObject.SetActive(false);
+        Indicator.gameObject.SetActive(false);
+        EndSkillCheck(); // Call EndSkillCheck method to hide the skill check
+    }
+
+    private void EndSkillCheck()
+    {
+        // Disable skill check UI elements
+        skillCheckBar.gameObject.SetActive(false);
+        successZone.gameObject.SetActive(false);
+        Indicator.gameObject.SetActive(false);
+        // Set skill check flag to inactive
+        isSkillCheckActive = false;
+
+        // Perform actions based on skill check result
+        if (skillCheckSuccess)
+        {
+            // Success actions
+            StartFishing();
+        }
+        else
+        {
+            // Failure actions
+        }
+    }
+
+    // Method to start the skill check
+    private void StartSkillCheck()
+    {
+        // Set skill check UI elements active
+        skillCheckBar.gameObject.SetActive(true);
+        successZone.gameObject.SetActive(true);
+
+        // Reset skill check bar position
+        skillCheckBar.transform.localPosition = new Vector3(skillCheckBarStartPosition, skillCheckBar.transform.localPosition.y, skillCheckBar.transform.localPosition.z);
+
+        // Set skill check flag to active
+        isSkillCheckActive = true;
+    }
+
 }
