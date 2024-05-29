@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KeyBinds.unity
     guid: 2aac35b51fe80804a89072fcec8664ce
+  - enabled: 1
+    path: Assets/Scenes/WhatAbout.unity
+    guid: bfb4d058aeff4904ead03b7dde122856
   m_configObjects: {}
