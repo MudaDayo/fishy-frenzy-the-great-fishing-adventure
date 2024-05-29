@@ -24697,7 +24697,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8394661219458683048}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnFish
+        m_MethodName: onFish
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -19685,7 +19685,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8394661219458683048}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnFish
+        m_MethodName: onFish
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19860,7 +19860,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
-  m_Sprite: {fileID: 21300000, guid: abcb095a7ec0e8b4b8f080bff446cbbd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f337563ac5e2ce47817e32702fde461, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -19883,7 +19883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeeade94bea86bd4fac9d6cb3fb53350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
+  parent: {fileID: 7204307328573273047}
 --- !u!1 &7975481357064329363
 GameObject:
   m_ObjectHideFlags: 0

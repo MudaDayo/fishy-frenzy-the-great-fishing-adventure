@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
 
     private bool fishing = false;
 
+    private bool fishButton = false;
+
     private bool hasCaughtFish = false; // Flag to track if the player has already caught a fish
 
     [SerializeField] private float fishingTime = 6f; // Time required to catch a fish
@@ -76,6 +78,11 @@ public class PlayerController : MonoBehaviour
     public void OnBoost(InputAction.CallbackContext context)
     {
         boosting = context.action.triggered;
+    }
+
+    public void onFish(InputAction.CallbackContext context)
+    {
+        fishButton = context.action.triggered;
     }
 
     public void OnSwitch(InputAction.CallbackContext context)
@@ -198,25 +205,39 @@ public class PlayerController : MonoBehaviour
             if (currentFishingTime >= fishingTime)
             {
 
-                Debug.Log("Caught a fish!");
-                hasCaughtFish = true; // Set the flag to true since the player has caught a fish
-
-                boatNoFish.SetActive(false);
-                boatWithFish.SetActive(true);
-
-                //StopFishing();
-                fishing = false;
-                currentFishingTime = 0f; // Reset the fishing timer
+                CatchFish();
 
             }
         }
         else
         {
             waterSplash.SetActive(false);
+            buttonPrompt.SetActive(false);
 
             // Reset the fishing timer if the player is not fishing
             currentFishingTime = 0f;
         }
+    }
+
+    private void CatchFish()
+    {
+        if (!fishButton)
+        {
+            buttonPrompt.SetActive(true);
+            return;
+        }
+        else
+        {
+            buttonPrompt.SetActive(false);
+        }
+        hasCaughtFish = true; // Set the flag to true since the player has caught a fish
+
+        boatNoFish.SetActive(false);
+        boatWithFish.SetActive(true);
+
+        //StopFishing();
+        fishing = false;
+        currentFishingTime = 0f; // Reset the fishing timer
     }
 
     private void SwitchBoat()
