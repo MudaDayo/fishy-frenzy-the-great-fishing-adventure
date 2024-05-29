@@ -10,12 +10,6 @@ public class MusicManager : MonoBehaviour
 
     private static MusicManager instance;
 
-
-    public bool IsMusicPlaying()
-    {
-        return mainMusicTheme.isPlaying || gameSceneTheme.isPlaying;
-    }
-
     private void Awake()
     {
         if (instance == null)
@@ -41,19 +35,12 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
-        PlayMainMusic();
+        ApplySavedMusicState();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "PlayScreen")
-        {
-            PlayGameSceneMusic();
-        }
-        else
-        {
-            PlayMainMusic();
-        }
+        ApplySavedMusicState();
     }
 
     public void PlayMainMusic()
@@ -79,9 +66,35 @@ public class MusicManager : MonoBehaviour
             mainMusicTheme.Stop();
         }
     }
+
     public void StopMusic()
     {
-        mainMusicTheme.Stop();
-        gameSceneTheme.Stop();
+        if (mainMusicTheme.isPlaying)
+        {
+            mainMusicTheme.Stop();
+        }
+        if (gameSceneTheme.isPlaying)
+        {
+            gameSceneTheme.Stop();
+        }
+    }
+
+    private void ApplySavedMusicState()
+    {
+        if (PlayerPrefs.GetInt("MusicToggle", 1) == 1)
+        {
+            if (SceneManager.GetActiveScene().name == "PlayScreen")
+            {
+                PlayGameSceneMusic();
+            }
+            else
+            {
+                PlayMainMusic();
+            }
+        }
+        else
+        {
+            StopMusic();
+        }
     }
 }

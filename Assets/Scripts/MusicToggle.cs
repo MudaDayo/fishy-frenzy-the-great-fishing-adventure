@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MusicToggle : MonoBehaviour
 {
@@ -18,22 +19,39 @@ public class MusicToggle : MonoBehaviour
             Debug.LogError("MusicManager not found!");
         }
 
-        // Set the initial state of the toggle button based on the music playing status
-        toggleButton.isOn = musicManager.IsMusicPlaying();
+        // Load the saved toggle state
+        toggleButton.isOn = PlayerPrefs.GetInt("MusicToggle", 1) == 1;
+        ApplyToggleState();
+
+        // Add listener to handle toggle value change
+        toggleButton.onValueChanged.AddListener(delegate { ToggleMusic(); });
+    }
+
+    private void ApplyToggleState()
+    {
+        if (toggleButton.isOn)
+        {
+            if (SceneManager.GetActiveScene().name == "PlayScreen")
+            {
+                musicManager.PlayGameSceneMusic();
+            }
+            else
+            {
+                musicManager.PlayMainMusic();
+            }
+        }
+        else
+        {
+            musicManager.StopMusic();
+        }
     }
 
     public void ToggleMusic()
     {
-        Debug.Log("ToggleMusic called");
-        if (toggleButton.isOn)
-        {
-            Debug.Log("Music is toggled on");
-            musicManager.PlayMainMusic(); // Play the music when the toggle is on
-        }
-        else
-        {
-            Debug.Log("Music is toggled off");
-            musicManager.StopMusic(); // Stop the music when the toggle is off
-        }
+        ApplyToggleState();
+
+        // Save the toggle state
+        PlayerPrefs.SetInt("MusicToggle", toggleButton.isOn ? 1 : 0);
+        PlayerPrefs.Save();
     }
 }
