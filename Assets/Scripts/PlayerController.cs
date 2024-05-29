@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 startPosition;
    
 
-    [SerializeField] private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke, boatWithFish, boatNoFish, indicatorFish;
+    [SerializeField] private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke, boatWithFish, boatNoFish, indicatorFish, waterSplash;
 
     [SerializeField] private float gravityValue = -9.81f;
 
@@ -188,6 +188,9 @@ public class PlayerController : MonoBehaviour
         // Fishing mechanics
         if (fishing && !hasCaughtFish)
         {
+            smoke.SetActive(false);
+            smallSmoke.SetActive(false);
+            waterSplash.SetActive(true);
             // Increment the fishing timer
             currentFishingTime += Time.deltaTime;
 
@@ -209,6 +212,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            waterSplash.SetActive(false);
+
             // Reset the fishing timer if the player is not fishing
             currentFishingTime = 0f;
         }
