@@ -203,6 +203,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: White Port
       objectReference: {fileID: 0}
+    - target: {fileID: 1763630210251700982, guid: 3ca04bea1d56e9c4299e9d07a3c551ad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 29.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763630210251700982, guid: 3ca04bea1d56e9c4299e9d07a3c551ad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.53
+      objectReference: {fileID: 0}
     - target: {fileID: 5468353880231421842, guid: 3ca04bea1d56e9c4299e9d07a3c551ad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.62
