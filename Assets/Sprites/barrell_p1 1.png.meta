@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 763dfccb73df1364eba4ec93c37691ee
+guid: 2a0e81016ca412345ae6e8020f35c8ff
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,91 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: smokeW_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 320.5
-        width: 323
-        height: 320.5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 336a63970f3daf44a9a2969ad2b0afa7
-      internalID: -2127045504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smokeW_1
-      rect:
-        serializedVersion: 2
-        x: 323
-        y: 320.5
-        width: 323
-        height: 320.5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a7c1ef50eda40843894ccc99bae9da2
-      internalID: -1234996636
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smokeW_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0.5
-        width: 323
-        height: 320.5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c642bbbaa3dbd1408c5f800c65217b8
-      internalID: -1429673829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smokeW_3
-      rect:
-        serializedVersion: 2
-        x: 323
-        y: 0.5
-        width: 323
-        height: 320.5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f61a56e29815b01448fb2d27d8d6f208
-      internalID: -1104500893
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -216,11 +132,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      smokeW_0: -2127045504
-      smokeW_1: -1234996636
-      smokeW_2: -1429673829
-      smokeW_3: -1104500893
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

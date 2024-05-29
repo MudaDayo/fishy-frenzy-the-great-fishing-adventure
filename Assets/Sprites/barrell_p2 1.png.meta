@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6a84bce6e2cea5647bebe518b0c561ff
+guid: 96a1589c5de08884eba34c42cbeccbbf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,91 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: smokered_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 334
-        width: 329.5
-        height: 334
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 49683449639e61d4688e0863bb98a6f6
-      internalID: -1825290585
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smokered_1
-      rect:
-        serializedVersion: 2
-        x: 329
-        y: 334
-        width: 329.5
-        height: 334
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 595c45ef0690dac4585b915fad210f7c
-      internalID: 1310335106
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smokered_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 329.5
-        height: 334
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3de72c23427e9b242b91da051a1fe45a
-      internalID: -1740976608
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smokered_3
-      rect:
-        serializedVersion: 2
-        x: 329
-        y: 0
-        width: 329.5
-        height: 334
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae2a61144f480c84489f1e02e05eaf91
-      internalID: -462649124
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -216,11 +132,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      smokered_0: -1825290585
-      smokered_1: 1310335106
-      smokered_2: -1740976608
-      smokered_3: -462649124
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

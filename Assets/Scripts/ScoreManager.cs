@@ -30,8 +30,8 @@ public class ScoreManager : MonoBehaviour
     // Update the score texts to reflect the current scores
     void UpdateScoreTexts()
     {
-        scoreP1Text.text = "Player1 Score: " + scoreP1.ToString();
-        scoreP2Text.text = "Player2 Score: " + scoreP2.ToString();
+        scoreP1Text.text = scoreP1.ToString();
+        scoreP2Text.text = scoreP2.ToString();
     }
 
     // Increment the score for the given player
