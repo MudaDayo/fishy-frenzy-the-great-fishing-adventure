@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 startPosition;
    
 
-    [SerializeField] private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke, boatWithFish, boatNoFish, indicatorFish, waterSplash;
+    [SerializeField] private GameObject smoke, fireSmoke, playerBase, hitBox, brokenSmoke, otherShip, smallSmoke, boatWithFish, boatNoFish, indicatorFish, waterSplash, buttonPrompt;
 
     [SerializeField] private float gravityValue = -9.81f;
 
@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     private bool lastFrameSwitching;
 
     private bool fishing = false;
+
+    private bool fishButtonPressed = false;
 
     private bool hasCaughtFish = false; // Flag to track if the player has already caught a fish
 
@@ -69,6 +71,11 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnMove(InputAction.CallbackContext context)
+    {
+        fishButtonPressed = context.action.triggered;
+    }
+
+    public void OnFish(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
     }
@@ -197,21 +204,33 @@ public class PlayerController : MonoBehaviour
             // Check if enough time has passed to catch a fish
             if (currentFishingTime >= fishingTime)
             {
-                
-                Debug.Log("Caught a fish!");
-                hasCaughtFish = true; // Set the flag to true since the player has caught a fish
+                buttonPrompt.SetActive(true);
+                /*if (controller.velocity.magnitude < 0.1f && fishButtonPressed)
+                {*/
+                    Debug.Log("Caught a fish!");
+                    hasCaughtFish = true; // Set the flag to true since the player has caught a fish
 
-                boatNoFish.SetActive(false);
-                boatWithFish.SetActive(true);
+                    boatNoFish.SetActive(false);
+                    boatWithFish.SetActive(true);
+                    
 
-                //StopFishing();
-                fishing = false;
-                currentFishingTime = 0f; // Reset the fishing timer
-                
+                    //StopFishing();
+                    fishing = false;
+                    currentFishingTime = 0f; // Reset the fishing timer
+                //}
+                /*else if (controller.velocity.magnitude > 0.1f)
+                {
+                    buttonPrompt.SetActive(false);
+                    waterSplash.SetActive(false);
+
+                    // Reset the fishing timer if the player is not fishing
+                    currentFishingTime = 0f;
+                }*/
             }
         }
         else
         {
+            buttonPrompt.SetActive(false);
             waterSplash.SetActive(false);
 
             // Reset the fishing timer if the player is not fishing
