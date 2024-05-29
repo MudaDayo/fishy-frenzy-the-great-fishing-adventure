@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WhatAbout.unity
     guid: bfb4d058aeff4904ead03b7dde122856
+  - enabled: 1
+    path: Assets/Scenes/White Win.unity
+    guid: e47781caf02d7014f98d70e12610b9b6
+  - enabled: 1
+    path: Assets/Scenes/Red Win.unity
+    guid: b0015e78bcb39534c8af13779b33a8d5
   m_configObjects: {}

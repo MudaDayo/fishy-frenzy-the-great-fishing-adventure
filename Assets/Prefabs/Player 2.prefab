@@ -25044,6 +25044,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4438b073e38f9b24092f0feaa8a98a8c, type: 2}
+    - target: {fileID: -6483264720827800135, guid: 35f2d6c605632b04c994e45c53ec2858, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62c1f06c7b55e524cb7bf76f5f44aef0, type: 2}
     - target: {fileID: -6067185528594298527, guid: 35f2d6c605632b04c994e45c53ec2858, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -25067,7 +25071,7 @@ PrefabInstance:
     - target: {fileID: -4265338650084452101, guid: 35f2d6c605632b04c994e45c53ec2858, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 4438b073e38f9b24092f0feaa8a98a8c, type: 2}
+      objectReference: {fileID: 2100000, guid: c52a602671d8303409ade3399e40b48b, type: 2}
     - target: {fileID: -425565630206218756, guid: 35f2d6c605632b04c994e45c53ec2858, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -25115,7 +25119,7 @@ PrefabInstance:
     - target: {fileID: 2586607309129781981, guid: 35f2d6c605632b04c994e45c53ec2858, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 4438b073e38f9b24092f0feaa8a98a8c, type: 2}
+      objectReference: {fileID: 2100000, guid: c52a602671d8303409ade3399e40b48b, type: 2}
     - target: {fileID: 2929640277652407947, guid: 35f2d6c605632b04c994e45c53ec2858, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -25123,7 +25127,7 @@ PrefabInstance:
     - target: {fileID: 2929640277652407947, guid: 35f2d6c605632b04c994e45c53ec2858, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4438b073e38f9b24092f0feaa8a98a8c, type: 2}
+      objectReference: {fileID: 2100000, guid: c52a602671d8303409ade3399e40b48b, type: 2}
     - target: {fileID: 3566390031902043909, guid: 35f2d6c605632b04c994e45c53ec2858, type: 3}
       propertyPath: m_CastShadows
       value: 0

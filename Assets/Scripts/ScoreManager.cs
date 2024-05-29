@@ -10,11 +10,11 @@ public class ScoreManager : MonoBehaviour
     public Text scoreP2Text;
     public Text resultText;
 
-    [SerializeField]
+    /*[SerializeField]
     float timer = 0;
 
     [SerializeField]
-    float endGameTimer = 5;
+    float endGameTimer = 5;*/
 
     private int scoreP1 = 0;
     private int scoreP2 = 0;
@@ -58,32 +58,11 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreP1 >= winningScore)
         {
-            // Player 1 wins
-            ShowResult("Player 1 Wins!", "Player 2 Loses!");
-            ResetPlayersPosition();
-            if (timer > endGameTimer)
-            {
-                gameEnded = true;
-                
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                ResetPlayersPosition();
-                
-            }
-            timer += Time.deltaTime;
+            SceneManager.LoadScene("White Win");
         }
         else if (scoreP2 >= winningScore)
         {
-            // Player 2 wins
-            ShowResult("Player 2 Wins!", "Player 1 Loses!");
-            ResetPlayersPosition();
-            if (timer > endGameTimer)
-            {
-                gameEnded = true;
-                
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                ResetPlayersPosition();
-            }
-            timer += Time.deltaTime;
+            SceneManager.LoadScene("Red Win");
         }
     }
 
